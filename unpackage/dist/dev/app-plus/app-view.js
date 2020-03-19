@@ -221,15 +221,34 @@ var render = function() {
             staticClass: _vm._$g(2, "sc"),
             attrs: {
               id: "myVideo",
-              src:
-                "https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20181126.mp4",
-              "enable-danmu": true,
-              "page-gesture": true,
+              src: "https://muwall.cn/test.mp4",
               controls: true,
+              "vslide-gesture": true,
               _i: 2
             },
             on: {
               error: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              play: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              pause: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              timeupdate: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              waiting: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              progress: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              loadedmetadate: function($event) {
+                return _vm.$handleViewEvent($event)
+              },
+              controlstoggle: function($event) {
                 return _vm.$handleViewEvent($event)
               }
             }
@@ -253,19 +272,20 @@ var render = function() {
           ),
           _c("p", { attrs: { _i: 6 } }, [
             _vm._v("房间人数: " + _vm._$g(6, "t0-0"))
-          ])
+          ]),
+          _c("p", { attrs: { _i: 7 } }, [_vm._v("\n\t\t\t当前播放状态:\n\t\t")])
         ],
         1
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+        { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
         [
           _c(
             "v-uni-button",
             {
               staticStyle: { width: "90vw" },
-              attrs: { type: "primary", _i: 8 },
+              attrs: { type: "primary", _i: 9 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
@@ -276,11 +296,11 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { attrs: { _i: 9 } },
+            { attrs: { _i: 10 } },
             [
               _c("v-uni-input", {
-                staticClass: _vm._$g(10, "sc"),
-                attrs: { id: "room_id", placeholder: "房间ID", _i: 10 },
+                staticClass: _vm._$g(11, "sc"),
+                attrs: { id: "room_id", placeholder: "房间ID", _i: 11 },
                 on: {
                   input: function($event) {
                     return _vm.$handleViewEvent($event)
@@ -291,7 +311,7 @@ var render = function() {
                 "v-uni-button",
                 {
                   staticStyle: { width: "90vw" },
-                  attrs: { type: "primary", _i: 11 },
+                  attrs: { type: "primary", _i: 12 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
