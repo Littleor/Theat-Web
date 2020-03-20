@@ -1,5 +1,4 @@
 <template>
-
 	<view>
 		<view class="contain">
 			<video class="video" id="myVideo" src="https://muwall.cn/test.mp4" @error="onVideoError" @play="onVideoPlay" @pause="onVideoPause"

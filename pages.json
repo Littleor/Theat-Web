@@ -1,15 +1,28 @@
 {
 	"pages": [{
-		"path": "pages/index/index",
-		"style": {
-			"navigationBarTitleText": "基础项目"
-		
+			"path": "pages/user/login",
+			"style": {
+				"app-plus":{
+					"titleNView":{
+						"backgroundColor": "#fae3d9",
+						"navigationBarTitleText": " ",
+						"navigationBarBackgroundColor": "#fae3d9"
+					}
+				},
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/video/index",
+			"style": {
+				"navigationBarTitleText": "基础项目"
+
+			}
 		}
-	}],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#007AFF",
-		"backgroundColor": "#FFFFFF"
+		"backgroundColor": "#fae3d9"
 	}
 }

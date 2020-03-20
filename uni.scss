@@ -13,12 +13,15 @@
  */
 
 /* 颜色变量 */
-
+ 
 /* 行为相关颜色 */
-$uni-color-primary: #007aff;
-$uni-color-success: #4cd964;
-$uni-color-warning: #f0ad4e;
+//#8ac6d1
+$uni-color-highlight: #ffacc2;
+$uni-color-primary: #fae3d9;
+$uni-color-success: #bbded6;
+$uni-color-warning: #ffb6b9;
 $uni-color-error: #dd524d;
+
 
 /* 文字基本颜色 */
 $uni-text-color:#333;//基本色
@@ -28,10 +31,11 @@ $uni-text-color-placeholder: #808080;
 $uni-text-color-disable:#c0c0c0;
 
 /* 背景颜色 */
-$uni-bg-color:#ffffff;
+$uni-bg-color: #fae3d9;
 $uni-bg-color-grey:#f8f8f8;
 $uni-bg-color-hover:#f1f1f1;//点击状态颜色
 $uni-bg-color-mask:rgba(0, 0, 0, 0.4);//遮罩颜色
+$uni-bg-color-mask-hint:rgba(0, 0, 0, 0.2);//轻遮罩颜色
 
 /* 边框颜色 */
 $uni-border-color:#e5e5e5;
