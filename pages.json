@@ -1,15 +1,21 @@
 {
 	"pages": [{
-			"path": "pages/user/login",
+			"path": "pages/user/index",
 			"style": {
-				"app-plus":{
-					"titleNView":{
+				"app-plus": {
+					"titleNView": {
 						"backgroundColor": "#fae3d9",
 						"navigationBarTitleText": " ",
 						"navigationBarBackgroundColor": "#fae3d9"
 					}
 				},
 				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/login",
+			"style": {
+				"navigationBarTitleText": "登录"
 			}
 		},
 		{
@@ -22,7 +28,7 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#ffb6b9",
 		"backgroundColor": "#fae3d9"
 	}
 }
