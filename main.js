@@ -16,6 +16,41 @@ Vue.prototype.isEmail = (string) => {
 	return pattern.test(string);
 }
 Vue.prototype.token = '';
+Vue.prototype.requests = ({url,data,success,fail,complete}) => {
+	if(fail == null){
+		fail = (res) => {};
+	}
+	if(complete == null){
+		complete = (res) => {};
+	}
+	if(success == null){
+		success = (res) => {};
+	}
+	uni.request({
+		url: 'http://localhost:3000/' + url,
+		method: 'POST',
+		data: data,
+		header: {
+			'token': Vue.prototype.token
+		},
+		success: (res) => {
+			console.log(res);
+			if(res.statusCode == 200 || res.statusCode == 201){
+				success(res);
+			}
+			else{
+				Vue.prototype.toast(res.data.error);
+			}
+		},
+		fail: (res) => {
+			fail(res)
+			console.log(res);
+		},
+		complete: (res) => {
+			complete(res);
+		}
+	});
+}
 App.mpType = 'app'
 
 const app = new Vue({

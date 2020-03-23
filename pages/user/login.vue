@@ -59,11 +59,22 @@
 					this.toast("请输入正确邮箱地址");
 					return;
 				}
-				if (!isValidPassword(this.password)) {
+				if (!this.isValidPassword(this.password)) {
 					this.toast("请输入6-15位数字,字母和下划线组成的密码");
 					return;
 				}
-
+				this.requests({
+					url: 'user/registered',
+					data: {
+						email: this.username,
+						code: this.code,
+						passwrod: md5(this.password)
+					},
+					success: (res) => {
+						this.toast("注册成功!跳转登录...");
+						this.isLogin = true;
+					}
+				})
 			},
 			sendEmail() {
 				if(this.isWait){return;}
@@ -71,26 +82,17 @@
 					this.toast("请输入正确邮箱地址");
 					return;
 				}
-				uni.request({
-					url: 'http://localhost:3000/user/sendMail',
-					method: 'POST',
+				this.requests(
+				{
+					url: 'user/sendMail',
 					data: {
 						email: this.username
 					},
-					header: {
-
-					},
 					success: (res) => {
-						console.log(res);
-						if(res.statusCode == 200 || res.statusCode == 201){
-							this.toast("已向" + this.username + "发送了验证码,如未收到请检查邮箱地址.");
-						}
-						else{
-							this.toast(res.data.error);
-						}
+						this.toast("已向" + this.username + "发送了验证码,如未收到请检查邮箱地址.");
 					},
 					fail: (res) => {
-						console.log(res);
+						
 					},
 					complete: (res) => {
 						this.isWait = true;
@@ -100,7 +102,8 @@
 							}
 						}, 1000);
 					}
-				});
+				}
+				);
 			},
 			isValidPassword(password) {
 				let reg = /^[\w]{6,15}$/;
