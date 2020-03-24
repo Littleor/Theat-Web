@@ -48,7 +48,23 @@
 				}
 			},
 			login() {
-
+				this.requests({
+					url: 'user/login',
+					data: {
+						userName: this.username,
+						password: md5(this.password)
+					},
+					success: (res) => {
+						uni.setStorage({
+						    key: 'token' ,
+						    data: res.data.token,
+						    success:  () => {
+								this.updateToken();
+								this.toast(res.data.message || res.data);
+						    }
+						});
+					}
+				})
 			},
 			registered() {
 				if (this.password !== this.passwordConfirm) {
@@ -68,7 +84,7 @@
 					data: {
 						email: this.username,
 						code: this.code,
-						passwrod: md5(this.password)
+						password: md5(this.password)
 					},
 					success: (res) => {
 						this.toast("注册成功!跳转登录...");
@@ -77,13 +93,14 @@
 				})
 			},
 			sendEmail() {
-				if(this.isWait){return;}
+				if (this.isWait) {
+					return;
+				}
 				if (!this.isEmail(this.username)) {
 					this.toast("请输入正确邮箱地址");
 					return;
 				}
-				this.requests(
-				{
+				this.requests({
 					url: 'user/sendMail',
 					data: {
 						email: this.username
@@ -92,18 +109,19 @@
 						this.toast("已向" + this.username + "发送了验证码,如未收到请检查邮箱地址.");
 					},
 					fail: (res) => {
-						
+
 					},
 					complete: (res) => {
 						this.isWait = true;
 						setInterval(() => {
 							if (this.waitSecond-- <= 0) {
-								clearInterval()
+								this.waitSecond = 60;
+								this.isWait = false;
+								clearInterval();
 							}
 						}, 1000);
 					}
-				}
-				);
+				});
 			},
 			isValidPassword(password) {
 				let reg = /^[\w]{6,15}$/;
