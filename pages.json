@@ -24,6 +24,12 @@
 				"navigationBarTitleText": "基础项目"
 
 			}
+		},
+		{
+			"path": "pages/main/main",
+			"style":{
+				"navigationBarTitleText": "情侣厅"
+			}
 		}
 	],
 	"globalStyle": {

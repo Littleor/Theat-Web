@@ -1,7 +1,12 @@
 <script>
 export default {
 	onLaunch: function() {
-		console.log('App Launch');
+		if(this.token !== ""){
+			uni.reLaunch({
+				url: 'pages/main/main'
+			})
+		}
+		console.log("onLaunch");
 	},
 	onShow: function() {
 		console.log('App Show');

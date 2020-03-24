@@ -61,6 +61,7 @@
 						    success:  () => {
 								this.updateToken();
 								this.toast(res.data.message || res.data);
+								uni.reLaunch({url: '../main/main'});
 						    }
 						});
 					}
@@ -113,16 +114,17 @@
 					},
 					complete: (res) => {
 						this.isWait = true;
-						setInterval(() => {
+						let interval = setInterval(() => {
 							if (this.waitSecond-- <= 0) {
 								this.waitSecond = 60;
 								this.isWait = false;
-								clearInterval();
+								clearInterval(interval);
 							}
 						}, 1000);
 					}
 				});
 			},
+			
 			isValidPassword(password) {
 				let reg = /^[\w]{6,15}$/;
 				return reg.test(password)
