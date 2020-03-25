@@ -69,7 +69,7 @@
 					}
 				})
 			},
-			registered() {
+			 registered() {
 				if (this.password !== this.passwordConfirm) {
 					this.toast("两次密码不一致");
 					return;
@@ -82,34 +82,56 @@
 					this.toast("请输入6-15位数字,字母和下划线组成的密码");
 					return;
 				}
-				const info = {};
-				// #ifdef APP-NVUE
+				// #ifdef APP-PLUS
 				try {
-					info = uni.getSystemInfoSync();
+					uni.getSystemInfo({
+						success: (infos) => {
+							this.requests({
+								url: 'user/registered',
+								data: {
+									email: this.username,
+									code: this.code,
+									password: md5(this.password),
+									brand: infos.brand,
+									model: infos.model,
+									storage: infos.storage,
+									system: infos.system,
+									platform: infos.platform,
+									cacheLocation: infos.cacheLocation
+								},
+								success: (res) => {
+									this.toast("注册成功!跳转登录...");
+									this.isLogin = true;
+								}
+							});
+						}
+					});
 				} catch (e) {
 					// error
 					console.error(e);
 				}
-
+				return;
 				// #endif
-				this.requests({
-					url: 'user/registered',
-					data: {
-						email: this.username,
-						code: this.code,
-						password: md5(this.password),
-						brand: info.brand,
-						model: info.model,
-						storage: info.storage,
-						system: info.system,
-						platform: info.platform,
-						cacheLocation: info.cacheLocation
-					},
-					success: (res) => {
-						this.toast("注册成功!跳转登录...");
-						this.isLogin = true;
-					}
-				})
+					this.requests({
+						url: 'user/registered',
+						data: {
+							email: this.username,
+							code: this.code,
+							password: md5(this.password)
+							// brand: infos.brand,
+							// model: infos.model,
+							// storage: infos.storage,
+							// system: infos.system,
+							// platform: infos.platform,
+							// cacheLocation: infos.cacheLocation
+						},
+						success: (res) => {
+							this.toast("注册成功!跳转登录...");
+							this.isLogin = true;
+						}
+					})
+
+			
 			},
 			sendEmail() {
 				if (this.isWait) {

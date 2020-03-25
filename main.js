@@ -30,6 +30,44 @@ Vue.prototype.updateToken = () => {
 	}
 }
 
+Vue.prototype.alert = ({
+	title,
+	content,
+	close
+}) => {
+	uni.showModal({
+		title: title,
+		content: content,
+		showCancel: false,
+		success: (res) => {
+			if (res.confirm || res.cancel) {
+				close();
+			}
+		}
+	})
+}
+
+Vue.prototype.confirm = ({
+	title,
+	content,
+	confirm,
+	cancle
+}) => {
+	uni.showModal({
+		title: title,
+		content: content,
+		showCancel: true,
+		success: (res) => {
+			if (res.confirm) {
+				confirm();
+			} else {
+				cancle();
+			}
+		}
+	})
+}
+
+
 Vue.prototype.requests = ({
 	url,
 	data,
@@ -72,6 +110,7 @@ Vue.prototype.requests = ({
 		},
 		fail: (res) => {
 			fail(res)
+			Vue.prototype.toast('请求错误,请检查网络');
 			console.log(res);
 		},
 		complete: (res) => {

@@ -1,9 +1,13 @@
 <template>
-	<view class="contain">
-		<view class="action">
-			<textarea @confirm="play" v-model="url" placeholder="请输入网络视频链接,支持mp4,m3u8,webm,flv,ogg等网络视频地址." />
-			<button @click="play" type="primary">开始共影</button>
+	<view>
+		<uni-notice-bar showIcon :speed="60" style="margin: 0px;" scrollable="true" single="true" :text="notice"/>
+		<view class="contain">
+
+			<view class="action">
+				<textarea @confirm="play" v-model="url" placeholder="请输入网络视频链接,支持mp4,m3u8,webm,flv,ogg等网络视频地址,或输入邀请密钥加入房间." />
+				<button @click="play" type="primary">开始共影</button>
 		</view>
+	</view>
 	</view>
 </template>
 
@@ -12,11 +16,24 @@
 	export default {
 		data() {
 			return {
-				'url': '',
+				url: '',
+				notice: '欢迎来到《情侣厅》'
 			};
 		},
 		onReady() {
 
+			this.requests({
+				url: 'notice',
+				data: {
+					// #ifdef APP-PLUS
+					version: plus.runtime.version,
+					appid: plus.runtime.appid
+					// #endif
+				},
+				success: (res) => {
+					this.notice = res.data.notice;
+				}
+				})
 		},
 		methods:{
 			play(){
