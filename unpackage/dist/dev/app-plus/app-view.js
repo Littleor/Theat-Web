@@ -1922,7 +1922,12 @@ var render = function() {
               }),
               _c("uni-list-item", {
                 staticClass: _vm._$g(7, "sc"),
-                attrs: { _i: 7 }
+                attrs: { _i: 7 },
+                on: {
+                  click: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
               })
             ],
             1

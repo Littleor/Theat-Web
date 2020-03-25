@@ -11,7 +11,7 @@
 			<uni-list class="list">
 				<uni-list-item class="list-item" title="关于" />
 				<!-- #ifdef APP-PLUS -->
-				<uni-list-item class="list-item" :note="version" title="检查更新" />
+				<uni-list-item @click="checkVersion" class="list-item" :note="version" title="检查更新" />
 				<!-- #endif -->
 			</uni-list>
 		</view>
@@ -54,18 +54,58 @@
 		},
 		methods: {
 			logout() {
-				uni.setStorage({
-					key: 'token',
-					data: '',
-					success: () => {
-						this.updateToken();
-						this.toast("退出登录成功");
-						uni.reLaunch({
-							url: '../user/index'
-						});
+				uni.showModal({
+				    title: `退出登录`,
+				    content: "确定退出登录?",
+				    success: function (res) {
+						if(res.confirm){
+							uni.setStorage({
+								key: 'token',
+								data: '',
+								success: () => {
+									this.updateToken();
+									this.toast("退出登录成功");
+									uni.reLaunch({
+										url: '../user/index'
+									});
+								}
+							});
+						}
+					}})
+			
+			},
+			checkVersion(){
+				// #ifdef APP-PLUS
+				this.requests({
+					url: 'version/check',
+					data: {
+						version: plus.runtime.version,
+						appid: plus.runtime.appid
+					},
+					success: (res) => {
+						let {update,desc,version,url} = res.data;
+						if(update){
+							uni.showModal({
+							    title: `更新 - ${version}`,
+							    content: desc,
+								showCancel: false,
+							    success: function (res) {
+									if(res.confirm || res.cancel){
+										uni.reLaunch({
+											url: '/pages/user/index'
+										})
+										plus.runtime.openURL(url);								
+										plus.runtime.quit();
+									}
+							    }
+							});
+						}
+						else{
+							this.toast("已是最新版,无需更新");
+						}
 					}
-				});
-
+				})
+				// #endif
 			}
 		}
 	}
