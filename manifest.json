@@ -1,14 +1,16 @@
 {
-    "name" : "Theat",
+    "name" : "情侣厅",
     "appid" : "__UNI__63FDD75",
-    "description" : "",
+    "description" : "专注于异地情侣互动",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
         "nvueCompiler" : "uni-app",
         "compilerVersion" : 3,
-        "modules" : {},
+        "modules" : {
+            "VideoPlayer" : {}
+        },
         "distribute" : {
             "android" : {
                 "permissions" : [
@@ -38,8 +40,12 @@
             },
             "ios" : {},
             "sdkConfigs" : {
-                "push" : {}
+                "push" : {},
+                "ad" : {}
             }
+        },
+        "splashscreen" : {
+            "waiting" : true
         }
     },
     "quickapp" : {},
@@ -47,6 +53,16 @@
         "appid" : "",
         "setting" : {
             "urlCheck" : true
+        }
+    },
+    "h5" : {
+        "router" : {
+            "mode" : "history"
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
         }
     }
 }

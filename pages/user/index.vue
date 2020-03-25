@@ -82,7 +82,6 @@
 		width: 80vw;
 		height: auto;
 	}
-	
 	body {
 		overflow: hidden;
 	}

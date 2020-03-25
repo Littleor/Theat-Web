@@ -27,14 +27,40 @@
 		},
 		{
 			"path": "pages/main/main",
-			"style":{
+			"style": {
 				"navigationBarTitleText": "情侣厅"
+			}
+		},
+		{
+			"path": "pages/main/user",
+			"style": {
+				"navigationBarTitleText": "用户中心"
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#ffb6b9",
-		"backgroundColor": "#fae3d9"
+		"navigationBarBackgroundColor": "#ff7d84",
+		"backgroundColor": "rgb(241,241,241)",
+		"backgroundColorBottom":"rgb(241,241,241)",
+		"backgroundColorTop":"rgb(241,241,241)"
+	},
+	"tabBar": {
+		"color": "#8a8a8a",
+		"selectedColor": "#ffb6b9",
+		"borderStyle": "black",
+		// "backgroundColor": "#ffffff",
+		"blurEffect":"light",
+		"list": [{
+			"text": "主页",
+			"pagePath": "pages/main/main",
+			"iconPath": "./static/font/home.png",
+			"selectedIconPath": "./static/font/home_selected.png"
+		}, {
+			"text": "用户",
+			"pagePath": "pages/main/user",
+			"iconPath": "./static/font/person.png",
+			"selectedIconPath": "./static/font/person_selected.png"
+		}]
 	}
 }

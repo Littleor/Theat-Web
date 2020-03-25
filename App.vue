@@ -3,9 +3,37 @@ export default {
 	onLaunch: function() {
 		if(this.token !== ""){
 			uni.reLaunch({
-				url: 'pages/main/main'
+				url: '/pages/main/main'
 			})
 		}
+		// #ifdef APP-PLUS
+		this.requests({
+			url: 'version/check',
+			data: {
+				version: plus.runtime.version,
+				appid: plus.runtime.appid
+			},
+			success: (res) => {
+				let {update,desc,version,url} = res.data;
+				if(update){
+					uni.showModal({
+					    title: `更新 - ${version}`,
+					    content: desc,
+						showCancel: false,
+					    success: function (res) {
+							if(res.confirm || res.cancel){
+								uni.reLaunch({
+									url: '/pages/user/index'
+								})
+								plus.runtime.openURL(url);								
+								plus.runtime.quit();
+							}
+					    }
+					});
+				}
+			}
+		})
+		// #endif
 		console.log("onLaunch");
 	},
 	onShow: function() {

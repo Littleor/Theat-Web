@@ -24,7 +24,7 @@ try {
 Vue.prototype.updateToken = () => {
 	try {
 		Vue.prototype.token = uni.getStorageSync('token') || "";
-		console.log(Vue.prototype.token);
+		// console.log(Vue.prototype.token);
 	} catch (e) {
 		console.error(e);
 	}
@@ -54,7 +54,7 @@ Vue.prototype.requests = ({
 			'token': Vue.prototype.token
 		},
 		success: (res) => {
-			console.log(res);
+			// console.log(res);
 			if (res.statusCode == 200 || res.statusCode == 201) {
 				success(res);
 			} else {

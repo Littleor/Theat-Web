@@ -56,13 +56,15 @@
 					},
 					success: (res) => {
 						uni.setStorage({
-						    key: 'token' ,
-						    data: res.data.token,
-						    success:  () => {
+							key: 'token',
+							data: res.data.token,
+							success: () => {
 								this.updateToken();
 								this.toast(res.data.message || res.data);
-								uni.reLaunch({url: '../main/main'});
-						    }
+								uni.reLaunch({
+									url: '../main/main'
+								});
+							}
 						});
 					}
 				})
@@ -80,12 +82,28 @@
 					this.toast("请输入6-15位数字,字母和下划线组成的密码");
 					return;
 				}
+				const info = {};
+				// #ifdef APP-NVUE
+				try {
+					info = uni.getSystemInfoSync();
+				} catch (e) {
+					// error
+					console.error(e);
+				}
+
+				// #endif
 				this.requests({
 					url: 'user/registered',
 					data: {
 						email: this.username,
 						code: this.code,
-						password: md5(this.password)
+						password: md5(this.password),
+						brand: info.brand,
+						model: info.model,
+						storage: info.storage,
+						system: info.system,
+						platform: info.platform,
+						cacheLocation: info.cacheLocation
 					},
 					success: (res) => {
 						this.toast("注册成功!跳转登录...");
@@ -124,7 +142,7 @@
 					}
 				});
 			},
-			
+
 			isValidPassword(password) {
 				let reg = /^[\w]{6,15}$/;
 				return reg.test(password)
