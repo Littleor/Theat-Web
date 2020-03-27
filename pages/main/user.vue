@@ -35,6 +35,12 @@
 			}
 		},
 		onReady() {
+			if(this.token === '' || this.token === null){
+				uni.reLaunch({
+					url:'/pages/user/index'
+				})
+				return;
+			}
 			// #ifdef APP-PLUS
 			this.version = plus.runtime.version;
 			// #endif

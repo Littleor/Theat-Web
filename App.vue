@@ -1,10 +1,11 @@
 <script>
 export default {
 	onLaunch: function() {
+		this.updateToken();
 		if(this.token !== ""){
-			uni.reLaunch({
-				url: '/pages/main/main'
-			})
+			// uni.reLaunch({
+			// 	url: '/pages/main/main'
+			// })
 		}
 		// #ifdef APP-PLUS
 		this.requests({

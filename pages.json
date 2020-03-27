@@ -19,10 +19,9 @@
 			}
 		},
 		{
-			"path": "pages/video/index",
+			"path": "pages/video/main",
 			"style": {
-				"navigationBarTitleText": "基础项目"
-
+				"navigationBarTitleText": "播放厅"
 			}
 		},
 		{

@@ -29,6 +29,13 @@
 				agree: false,
 			}
 		},
+		onLoad(res){
+			if(this.token !== ""){
+				uni.reLaunch({
+					url: '/pages/main/main'
+				})
+			}
+		},
 		methods: {
 			login: function() {
 				if (!this.agree) {

@@ -24,7 +24,6 @@ try {
 Vue.prototype.updateToken = () => {
 	try {
 		Vue.prototype.token = uni.getStorageSync('token') || "";
-		// console.log(Vue.prototype.token);
 	} catch (e) {
 		console.error(e);
 	}

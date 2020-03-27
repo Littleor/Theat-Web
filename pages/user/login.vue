@@ -55,6 +55,8 @@
 						password: md5(this.password)
 					},
 					success: (res) => {
+						uni.setStorageSync('email',res.data.email);
+						uni.setStorageSync('username',res.data.name);
 						uni.setStorage({
 							key: 'token',
 							data: res.data.token,
