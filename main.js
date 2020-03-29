@@ -84,9 +84,10 @@ Vue.prototype.requests = ({
 		success = (res) => {};
 	}
 	uni.request({
-		url: 'http://192.168.2.101:3000/' + url,
+		url: 'http://theatapi.sixming.com/' + url,
 		method: 'POST',
 		data: data,
+		sslVerify: false,
 		header: {
 			'token': Vue.prototype.token
 		},

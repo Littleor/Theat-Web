@@ -37,6 +37,25 @@
 					this.notice = res.data.notice;
 				}
 				})
+				// #ifdef APP-PLUS
+				uni.getClipboardData({
+				    success:  (res) => {
+						let url = res.data;
+						if(url.indexOf('情侣厅') !== -1 && url.indexOf('$$') && ( url.indexOf('$_$') != url.lastIndexOf('$_$'))){
+							this.confirm({
+								title: '加入共影',
+								content: '检测到已复制邀请链接,是否立即加入共影?',
+								confirm: () => {
+									uni.navigateTo({url: `/pages/video/main?url=${encodeURIComponent(JSON.stringify(url))}`
+									});
+								}
+							})
+							}
+				    }
+				});
+				// #endif
+				
+			
 		},
 		methods:{
 			 isURL (str_url) {

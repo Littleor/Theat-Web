@@ -40,9 +40,9 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarBackgroundColor": "#ff7d84",
-		"backgroundColor": "rgb(241,241,241)",
-		"backgroundColorBottom":"rgb(241,241,241)",
-		"backgroundColorTop":"rgb(241,241,241)"
+		"backgroundColor": "#fae3d9",
+		"backgroundColorBottom":"fae3d9",
+		"backgroundColorTop":"#fae3d9"
 	},
 	"tabBar": {
 		"color": "#8a8a8a",

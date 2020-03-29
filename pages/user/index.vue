@@ -1,7 +1,7 @@
 <template>
 	<view class='contain'>
 		<view class="header">
-			<image id="avatar" mode="center" src="../../static/image/icon.png"></image>
+			<image id="avatar" mode="aspectFit" src="../../static/image/icon.png"></image>
 			<h2>情侣厅</h2>
 			<p>为异地情侣提供共同观影服务</p>
 		</view>
@@ -78,6 +78,7 @@
 </script>
 
 <style lang="scss" scoped>
+	
 	.form-action button{
 		color: white;
 	}
@@ -124,11 +125,11 @@
 	}
 
 	.contain {
+		background-color: $uni-bg-color;
 		text-align: center;
 		color: white;
 		height: 100vh;
 		width: 100vw;
-		background-color: $uni-bg-color;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
@@ -154,8 +155,6 @@
 		margin: 15px 12vw 0px 12vw;
 	}
 	.footer {
-		/* #ifdef APP-PLUS */
-		margin-bottom: 10px;
-		/* #endif */
+		
 	}
 </style>
