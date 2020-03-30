@@ -82,6 +82,9 @@
         },
         "splashscreen" : {
             "waiting" : true
+        },
+        "uniStatistics" : {
+            "enable" : true
         }
     },
     "quickapp" : {},
@@ -89,6 +92,9 @@
         "appid" : "",
         "setting" : {
             "urlCheck" : true
+        },
+        "uniStatistics" : {
+            "enable" : true
         }
     },
     "h5" : {
@@ -99,6 +105,33 @@
             "treeShaking" : {
                 "enable" : true
             }
+        },
+        "uniStatistics" : {
+            "enable" : true
+        },
+        "domain" : "theat.sixming.com"
+    },
+    "mp-qq" : {
+        "uniStatistics" : {
+            "enable" : true
         }
+    },
+    "mp-alipay" : {
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "mp-toutiao" : {
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "mp-baidu" : {
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "uniStatistics" : {
+        "enable" : true
     }
 }

@@ -91,7 +91,7 @@
 			if (this.client.id != this.client.room) {
 				setInterval(() => {
 					this.sendMessage('requestSync');
-				}, 1000 * 30);
+				}, 1000 * 60 * 3);
 			}
 		},
 		methods: {
@@ -155,16 +155,14 @@
 					if (!this.getMessage) {
 						this.sendMessage('loaded');
 					}
-					// this.getMessage = false;
 				}
 				if (this.excute.type == 'process' && (new Date().getTime() - this.excute.time) <= 800) {
 					//调整进度时避免对方回调loading和loaded
 					console.log('对方调整了进度');
 					return;
 				}
-				if (currentTime != 0 && Math.abs(currentTime - clientCurrentTime) >= 1.2 && !this.getMessage) {
+				if (currentTime != 0 && Math.abs(currentTime - clientCurrentTime) >= 3 && !this.getMessage) {
 					//调整了进度
-					this.client.status.process = currentTime;
 					this.sendMessage('process');
 					console.log('自己调整了进度process');
 					return;
@@ -179,6 +177,7 @@
 					return;
 				}
 				if (!this.getMessage || type == 'responseSync' || type == 'requestSync') {
+					this.excute.type = '';
 					this.lastAction.type = type;
 					this.lastAction.time = new Date().getTime();
 					this.client.status.type = type;
@@ -193,7 +192,6 @@
 			addListener: function() {
 				//收到事件
 				this.socket.on('adjust', (data) => {
-					this.getMessage = true;
 					let {
 						id,
 						room,
@@ -211,10 +209,10 @@
 					} = status;
 					let delay = new Date().getTime() - sendTime;
 					process = process + delay / 1000.0;
-					if(this.lastAction.type == 'process' && type == 'process' && (new Date().getTime() - this.lastAction.time) <= 300){
+					if(this.lastAction.type == 'process' && type == 'process' && (new Date().getTime() - this.lastAction.time) <= 1000){
 						return;
 					}
-					if (this.excute.type !== '' && (new Date().getTime() - this.excute.time) <= 1200) {
+					if (this.excute.type !== '' &&  type !== 'loaded' && type !== 'process' && (new Date().getTime() - this.excute.time) <= 800) {
 						return;
 					}
 					this.getMessage = true;
@@ -267,10 +265,11 @@
 							}
 							this.videoContext.seek(process);
 							this.videoContext.play();
-							this.toast('对方加载完成');
+							if(!( (this.excute.type === 'loading' || this.excute.type  === 'requestSync') && (new Date().getTime() - this.excute.time) <= 1000)){
+								this.toast('对方加载完成');
+							}
 							break;
 						case 'process':
-							
 							this.client.status.playing = true;
 							this.client.status.duration = duration;
 							this.client.status.process = process;
@@ -279,6 +278,7 @@
 							}
 							this.videoContext.seek(process);
 							this.videoContext.play();
+							
 							this.toast('对方调整了进度');
 							break;
 						case 'requestSync':
@@ -306,11 +306,6 @@
 						default:
 							break;
 							//校准
-							// this.client.status.playing = playing;
-							// this.client.status.duration = duration;
-							// this.client.status.process = process;
-							// this.videoContext.seek(process);
-							// this.videoContext.play();
 					}
 					setTimeout(() => {
 						this.getMessage = false;
